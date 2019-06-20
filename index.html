@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>函数练习之计算器</title>
+		<style>
+			.tab{
+				width: 500px;
+				border: 1px solid #ccc;
+				border-collapse: collapse;
+				margin: 50px auto;
+				text-align: center;
+				background: pink;
+			}
+			#txtResult{
+				width: 80%;
+				height: 40px;
+				text-align: right;
+				font-size: 30px;
+				color: #00BFFF;
+			}
+			input[type=button]{
+				width: 50px;
+				height: 50px;
+				text-align: center;
+				line-height: 20px;
+				color: white;
+				background: plum;
+				border: none;
+				font-size: 20px;
+				margin: 10px 0;
+			}
+			.box{
+				width: 960px;
+				margin: 50px auto;
+				text-align: center;
+				border: 1px solid #ccc;
+			}
+			.box a{
+				text-align: center;
+				line-height: 50px;
+				color: palevioletred;
+			}
+		</style>
+	</head>
+	<body>
+		<table class="tab" border="1">
+			<tr>
+				<td colspan="4"><input type="text" name="" value="0" id="txtResult"></td>
+			</tr>
+			<tr>
+				<td><input class="number" type="button" name="" value="7"></td>
+				<td><input class="number" type="button" name="" value="8"></td>
+				<td><input class="number" type="button" name="" value="9"></td>
+				<td><input class="jisuan" type="button" name="" value="x"></td>
+			</tr>
+			<tr>
+				<td><input class="number" type="button" name="" value="4"></td>
+				<td><input class="number" type="button" name="" value="5"></td>
+				<td><input class="number" type="button" name="" value="6"></td>
+				<td><input class="jisuan" type="button" name="" value="-"></td>
+			</tr>
+			<tr>
+				<td><input class="number" type="button" name="" value="1"></td>
+				<td><input class="number" type="button" name="" value="2"></td>
+				<td><input class="number" type="button" name="" value="3"></td>
+				<td><input class="jisuan" type="button" name="" value="+"></td>
+			</tr>
+			<tr>
+				<td><input class="number" type="button" name="" value="0"></td>
+				<td><input class="jisuan" type="button" name="" value="." onclick="calCulate(this.value)"></td>
+				<td><input type="button" name="" value="+/-"></td>
+				<td><input class="jisuan" type="button" name="" value="/"></td>
+			</tr>
+			<tr>
+				<td><input class="jisuan" type="button" name="" value="%"></td>
+				<td><input id="btntuige" type="button" name="" value="退格"></td>
+				<td><input id="btnclear" type="button" name="" value="清屏"></td>
+				<td><input id="btncalc" type="button" name="" value="="></td>
+			</tr>
+		</table>
+		<div class="box">
+			<a href="index.html">点击跳转到index</a>
+			<a href="demo01.html">点击跳转到demo01</a>
+			<a href="demo02.html">点击跳转到demo02</a>
+			<a href="demo03.html">点击跳转到demo03</a>
+			<a href="demo04.html">点击跳转到demo04</a>
+			<a href="demo05.html">点击跳转到demo05</a>
+			<a href="demo06.html">点击跳转到demo06</a>
+			<a href="demo07.html">点击跳转到demo07</a>
+			<a href="demo08.html">点击跳转到demo08</a>
+			<a href="demo09.html">点击跳转到demo09</a>
+			<a href="demo10.html">点击跳转到demo10</a>
+			<a href="demo11.html">点击跳转到demo11</a>
+			<a href="demo12.html">点击跳转到demo12</a>
+			<a href="demo13.html">点击跳转到demo13</a>
+			<a href="demo14.html">点击跳转到demo14</a>
+			<a href="demo15.html">点击跳转到demo15</a>
+			<a href="demo16.html">点击跳转到demo16</a>
+			<a href="demo17.html">点击跳转到demo17</a>
+			<a href="demo18.html">点击跳转到demo18</a>
+		</div>
+		<script type="text/javascript">
+			var txtResult = document.getElementById("txtResult");
+			var txtNumber = document.getElementsByClassName("number");
+			var btnclear = document.getElementById("btnclear");
+			var btnjisuan = document.getElementsByClassName("jisuan");
+			var btncalc = document.getElementById("btncalc");
+			var firstNum,secondNum;
+			var yusuanfu;
+			var geshu = txtNumber.length;
+			var temp="";
+			for(var i=0;i<geshu;i++){
+				txtNumber[i].onclick = function(){
+					temp = temp + this.value;
+					txtResult.value = temp;
+				}
+			}
+			//清屏
+			btnclear.onclick = function(){
+				txtResult.value = "0";
+			}
+			// 加 减 乘
+			var l = btnjisuan.length;
+			for(var j=0;j<l;j++){
+				btnjisuan[j].onclick = function(){
+					yunsuanfu = this.value;     //this.value 是 加减乘
+					firstNum = parseInt(temp,10);    //10进制   得到第一个值
+					temp = "";
+				}
+			}
+			//等于
+			btncalc.onclick = function(){
+				secondNum = parseInt(temp,10);   //10进制   得到第一个值
+				temp = "";       //点了等于之后 清空了就会显示NaN
+				if(yunsuanfu == '+'){
+					txtResult.value = firstNum + secondNum;
+				}else if(yunsuanfu == '-'){
+					txtResult.value = firstNum - secondNum;
+				}else if(yunsuanfu == 'x'){
+					txtResult.value = firstNum * secondNum;
+				}else if(yunsuanfu == '/'){
+					txtResult.value = firstNum / secondNum;
+				}
+			}
+			//退格
+			btntuige.onclick = function(){
+				temp = temp.substr(0,temp.length-1);    //substr (起始位置,长度)
+				txtResult.value = temp;
+			}
+		</script>
+	</body>
+</html>
